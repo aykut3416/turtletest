@@ -1,0 +1,7 @@
+<launch>
+  <arg name="map_file" default="$(find turtletest)/map/my_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+  <node name="maptoodom" pkg="tf" type="static_transform_publisher"  args="0 0 0 0 0 0 /map /odom 100"/>
+  <include file="$(find turtletest)/move_base2.launch.xml"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtletest)/rviz/new.rviz"/>
+</launch>
